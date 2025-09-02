@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="login-header">
+    <mat-icon class="app-icon">task_alt</mat-icon>
+    <h1>Gerenciador de Tarefas</h1>
+  </div>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Entre com suas credenciais</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput formControlName="email" placeholder="Digite seu endereço de E-mail">
+          <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">
+            O campo E-mail é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
+            O campo Senha é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading || loginForm.invalid">
+          <mat-icon>{{ loading ? 'sync' : 'login' }}</mat-icon>
+          {{ loading ? 'Logando...' : 'Login' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

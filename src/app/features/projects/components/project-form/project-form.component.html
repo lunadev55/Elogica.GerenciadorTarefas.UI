@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>{{isEditMode ? 'Editar Projeto' : 'Criar Novo Projeto'}}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" placeholder="Enter project name">
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          O campo Nome é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="form.get('name')?.hasError('minlength')">
+          O Nome do projeto deve ter pelo menos 3 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput formControlName="description" rows="4" placeholder="Digite a descrição do Projeto"></textarea>
+        <mat-error *ngIf="form.get('description')?.hasError('required')">
+          O campo Descrição é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="form.get('description')?.hasError('minlength')">
+          O campo Descrição deve ter pelo menos 3 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="date-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Início</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+          <mat-error *ngIf="form.get('startDate')?.hasError('required')">
+            O campo Data de Início é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Fim</mat-label>
+          <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+          <mat-error *ngIf="form.get('endDate')?.hasError('required')">
+            O campo Data de Fim é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-error *ngIf="form.hasError('dateRange')" class="date-range-error">
+        A Data de Fim do Projeto deve ser maior do que a Data de Início.
+      </mat-error>
+      
+       <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let option of projectStatusOptions" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('status')?.hasError('required')">
+          O campo Status é obrigatório.
+        </mat-error>
+      </mat-form-field>      
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      {{isEditMode ? 'Update' : 'Create'}}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <h1>Welcome, {{ (authService.currentUser$ | async)?.username }}!</h1>
+  
+  <div class="dashboard-cards">
+    <mat-card routerLink="/projects">
+      <mat-card-header>
+        <mat-card-title>Projects</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon>folder</mat-icon>
+        <p>Manage your projects</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card routerLink="/tasks">
+      <mat-card-header>
+        <mat-card-title>Tasks</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon>task</mat-icon>
+        <p>Manage your tasks</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card routerLink="/users">
+      <mat-card-header>
+        <mat-card-title>Users</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-icon>people</mat-icon>
+        <p>Manage users</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.status-chip {
+  min-width: 96px;
+  justify-content: center;
+  
+  &.status-not-started {
+    background-color: #9e9e9e !important;
+    color: white !important;
+  }
+  
+  &.status-in-progress {
+    background-color: #2196f3 !important;
+    color: white !important;
+  }
+  
+  &.status-on-hold {
+    background-color: #ff9800 !important;
+    color: white !important;
+  }
+  
+  &.status-completed {
+    background-color: #4caf50 !important;
+    color: white !important;
+  }
+  
+  &.status-cancelled {
+    background-color: #f44336 !important;
+    color: white !important;
+  }
+}
+
+.project-list-container {
+  padding: 20px;
+
+  .mat-table {
+    width: 100%;
+  }
+
+  .mat-column-status {
+    text-align: center;
+    width: 150px;
+  }
+}

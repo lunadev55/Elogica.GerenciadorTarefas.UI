@@ -1,0 +1,85 @@
+<div class="project-list-container">
+  <div class="header">
+    <h1>Projetos</h1>
+    <button mat-raised-button color="primary" (click)="openProjectDialog()" *ngIf="isAdmin">
+      <mat-icon>add</mat-icon>
+      Novo Projeto
+    </button>   
+  </div>
+
+  <mat-form-field>
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar Projetos..." #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let project"> {{project.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </th>
+        <td mat-cell *matCellDef="let project"> {{project.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Início </th>
+        <td mat-cell *matCellDef="let project"> {{project.startDate | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Fim </th>
+        <td mat-cell *matCellDef="let project"> {{project.endDate | date}} </td>
+      </ng-container>
+   
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let project">
+          <mat-chip 
+            [ngClass]="{
+              'status-chip': true,
+              'status-not-started': project.status === 'NotStarted',
+              'status-in-progress': project.status === 'InProgress',
+              'status-on-hold': project.status === 'OnHold',
+              'status-completed': project.status === 'Completed',
+              'status-cancelled': project.status === 'Cancelled'
+            }"
+            [color]="getStatusColor(project.status)" 
+            selected>
+            {{project.status | projectStatus}}
+          </mat-chip>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let project">
+          <button mat-icon-button color="primary" (click)="openProjectDetails(project)" matTooltip="Ver detalhes">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <ng-container *ngIf="isAdmin">          
+            <button mat-icon-button color="accent" (click)="openProjectDialog(project)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteProject(project.id)" matTooltip="Excluir">
+              <mat-icon>delete</mat-icon>
+            </button>          
+          </ng-container>
+        </td>
+      </ng-container>    
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator 
+      [length]="totalItems"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="onPageChange($event)"
+      aria-label="Selecionar página">
+    </mat-paginator>
+  </div>
+</div>
