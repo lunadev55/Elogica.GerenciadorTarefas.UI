@@ -1,0 +1,1 @@
+# Elogica.GerenciadorTarefas.UI
