@@ -6,6 +6,14 @@
 
 Frontend em Angular para o sistema de gerenciamento de tarefas e projetos, consumindo a API .NET do projeto TaskManager.DeveloperEvaluation. Interface moderna e responsiva para gerenciar projetos, tarefas e usuários.
 
+<img width="1506" height="1007" alt="angular-login" src="https://github.com/user-attachments/assets/2e6f16d2-5697-4025-9ebb-04cc720943b4" />
+<img width="1513" height="800" alt="dashboard" src="https://github.com/user-attachments/assets/c183e9ff-573a-4dc2-9126-119991366d3a" />
+<img width="1532" height="949" alt="detalhes-projeto" src="https://github.com/user-attachments/assets/71504309-a751-475d-bfc8-4460a2212ab8" />
+<img width="1537" height="887" alt="listagem-projetos" src="https://github.com/user-attachments/assets/287967b4-0437-470d-bb5c-f24a1bb8af19" />
+<img width="1524" height="591" alt="listagem-usuarios" src="https://github.com/user-attachments/assets/391ebd91-cc9d-4061-bed5-5c41f4ab9b26" />
+<img width="1518" height="1075" alt="novo-usuario" src="https://github.com/user-attachments/assets/c49326f3-2a8e-47a4-8ac7-51f992ece348" />
+<img width="1519" height="1017" alt="pop-up-novo-projeto" src="https://github.com/user-attachments/assets/5b61153f-f7fa-4d59-92b6-7c7a9cc05258" />
+
 ## 🚀 Funcionalidades
 
 - **Autenticação JWT** com tela de login
